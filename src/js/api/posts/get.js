@@ -12,7 +12,7 @@ import { authFetch } from "../fetch.js";
  * @throws {Error} If the request fails or an error occurs during retrieval.
  */
 export async function getPosts() {
-  let url = `${API_BASE}${API_POSTS}?${API_QUERY_AUTHOR}&${API_QUERY_COMMENT}`;
+  let url = `${API_BASE}${API_POSTS}?${API_QUERY_AUTHOR}`;
   const response = await authFetch(url);
   return await response.json();
 }

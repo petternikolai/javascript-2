@@ -7,18 +7,30 @@ import { getPosts } from "./get.js";
  * @param {string} filterValue - The filter value to apply to the posts.
  */
 export function filterPosts(posts, filterValue) {
+  // Validate if posts array is provided
+  if (!Array.isArray(posts)) {
+    console.error("Error: Posts data is not an array");
+    return;
+  }
+
   // Filter posts based on filter value
-  let filteredPosts = posts;
+  let filteredPosts = [...posts]; // Create a copy to avoid mutating original array
   if (filterValue === "2") {
     filteredPosts.sort((a, b) => new Date(a.created) - new Date(b.created));
   } else if (filterValue === "3") {
     filteredPosts.sort((a, b) => new Date(b.created) - new Date(a.created));
   } else if (filterValue === "1") {
-    filteredPosts.sort((a, b) => b._count.reactions - a._count.reactions);
+    filteredPosts.sort(
+      (a, b) => (b._count?.reactions || 0) - (a._count?.reactions || 0)
+    );
   } else if (filterValue === "4") {
-    filteredPosts.sort((a, b) => a.author.name.localeCompare(b.author.name));
+    filteredPosts.sort((a, b) =>
+      (a.author?.name || "").localeCompare(b.author?.name || "")
+    );
   } else if (filterValue === "5") {
-    filteredPosts.sort((a, b) => b.author.name.localeCompare(a.author.name));
+    filteredPosts.sort((a, b) =>
+      (b.author?.name || "").localeCompare(a.author?.name || "")
+    );
   }
 
   // Render filtered posts
@@ -28,6 +40,7 @@ export function filterPosts(posts, filterValue) {
 /**
  * Renders posts to the DOM.
  * @param {Array} posts - An array of post objects to render.
+ * @param {boolean} [clearExisting=true] - Whether to clear existing content in the container.
  * @param {string} [currentUser] - The current user's name.
  */
 export function renderPosts(posts, clearExisting = true) {
@@ -53,8 +66,22 @@ export function renderPosts(posts, clearExisting = true) {
 
   // Render posts
   posts.forEach((post) => {
+    // Validate if post is defined
+    if (!post || !post.author || !post.created) {
+      console.error("Error: Invalid post data");
+      return;
+    }
+
     const postItem = document.createElement("li");
     postItem.classList.add("list-group-item", "p-3", "rounded", "my-2");
+
+    const postContentWrapper = document.createElement("div");
+    postContentWrapper.classList.add("post-content-wrapper");
+
+    // Add event listener to redirect to detail page when post content is clicked
+    postContentWrapper.addEventListener("click", () =>
+      viewPostDetails(post.id)
+    );
 
     const profileInfo = document.createElement("div");
     profileInfo.classList.add(
@@ -69,13 +96,13 @@ export function renderPosts(posts, clearExisting = true) {
     authorInfo.classList.add("d-flex", "align-items-center", "gap-2");
 
     const authorAvatar = document.createElement("img");
-    authorAvatar.src = post.author.avatar.url;
+    authorAvatar.src = post.author?.avatar?.url || ""; // Add null checks
     authorAvatar.classList.add("feed-picture");
-    authorAvatar.alt = post.author.avatar.alt;
+    authorAvatar.alt = post.author?.avatar?.alt || ""; // Add null checks
 
     const authorName = document.createElement("p");
     authorName.classList.add("mb-0", "fw-bold");
-    authorName.textContent = `@${post.author.name}`;
+    authorName.textContent = `@${post.author?.name || ""}`; // Add null checks
 
     authorInfo.appendChild(authorAvatar);
     authorInfo.appendChild(authorName);
@@ -107,6 +134,9 @@ export function renderPosts(posts, clearExisting = true) {
       postContent.appendChild(postMedia);
     }
 
+    postContentWrapper.appendChild(profileInfo);
+    postContentWrapper.appendChild(postContent);
+
     const buttonRow = document.createElement("div");
     buttonRow.classList.add("row", "align-items-center");
 
@@ -118,7 +148,7 @@ export function renderPosts(posts, clearExisting = true) {
     const commentCount = document.createElement("span");
     commentCount.id = `comment-count-${post.id}`;
     commentCount.textContent =
-      post._count.comments > 0 ? ` ${post._count.comments}` : "";
+      post._count?.comments > 0 ? ` ${post._count.comments}` : "";
     commentButton.appendChild(commentCount);
     commentContainer.appendChild(commentButton);
 
@@ -129,13 +159,13 @@ export function renderPosts(posts, clearExisting = true) {
     const likeButton = createButton("fa-sharp fa-light fa-heart");
     const likeCount = document.createElement("span");
     likeCount.textContent =
-      post._count.reactions > 0 ? ` ${post._count.reactions}` : "";
+      post._count?.reactions > 0 ? ` ${post._count.reactions}` : "";
     likeButton.appendChild(likeCount);
     likeContainer.appendChild(likeButton);
 
     // Create dropdown for update and delete options if the post was made by the current user
     const storedProfile = JSON.parse(localStorage.getItem("profileData"));
-    const currentUser = storedProfile.name;
+    const currentUser = storedProfile?.name;
     let dropdownContainer; // Declare dropdownContainer outside the conditional block
     if (currentUser && post.author.name === currentUser) {
       dropdownContainer = document.createElement("div");
@@ -177,9 +207,7 @@ export function renderPosts(posts, clearExisting = true) {
       buttonRow.appendChild(dropdownContainer);
     }
 
-    // Append elements to post item
-    postItem.appendChild(profileInfo);
-    postItem.appendChild(postContent);
+    postItem.appendChild(postContentWrapper);
     postItem.appendChild(document.createElement("hr"));
     postItem.appendChild(buttonRow);
 
@@ -388,4 +416,9 @@ async function createPost() {
     console.error("Error creating post:", error);
     // Handle error - display an error message to the user
   }
+}
+
+// Function to redirect to detail page with post ID
+function viewPostDetails(postId) {
+  window.location.href = `postDetail.html?postId=${postId}`;
 }
