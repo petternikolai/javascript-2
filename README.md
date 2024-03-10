@@ -4,8 +4,8 @@
 
 ## Description
 
-This page allows the user to login or register on my social media platform ZenZone. 
-Once logged in you can view a post feed, check out your profile and update your profile picture and bio. 
+This page allows the user to login or register on my social media platform ZenZone.
+Once logged in you can view a post feed, check out your profile and update your profile picture and bio.
 It is also possible to create, update and delete posts.
 
 ## Built With
@@ -24,9 +24,6 @@ It is also possible to create, update and delete posts.
 ```bash
 git clone https://github.com/petternikolai/javascript-2.git
 ```
-## JSDocs
-
-[JsDocs](https://js2-jsdocs-zenzone.netlify.app)
 
 ## JSDocs
 
@@ -37,4 +34,3 @@ git clone https://github.com/petternikolai/javascript-2.git
 [Twitter](https://twitter.com/petternikolai94)
 
 [LinkedIn](https://www.linkedin.com/in/petter-nikolai-kristoffersen-a829a41b8/)
-
