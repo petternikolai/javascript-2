@@ -22,12 +22,14 @@
                 <i class="display-1 fa-sharp fa-thin fa-water"></i>
             </div>
             <div class="col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center">
-                <form name="auth" action="/feed/index.html" class="auth-form col-12 col-md-8 col-lg-6">
+                <form name="auth" action="/feed/index.html" pattern="^[\w]+$"
+                    class="auth-form col-12 col-md-8 col-lg-6">
                     <div class="mb-3">
-                        <input type="text" name="email" placeholder="Email" class="form-control" aria-label="Email"
-                            required autofocus="1">
+                        <input type="text" name="email" pattern="^[\w\-.]+@(stud\.)?noroff\.no$" placeholder="Email"
+                            class="form-control" aria-label="Email" required autofocus="1"
+                            title="Please enter a valid email address in the format example@noroff.no or example@stud.noroff.no">
                     </div>
-                    <div class="flex-shrink-0 mb-3">
+                    <div class="flex-shrink-0 mb-3" id="error-message">
                         <input type="password" name="password" placeholder="Password" class="form-control"
                             aria-label="Password" pattern=".{8,}" required
                             title="Password must have a minimum length of 8 characters!">

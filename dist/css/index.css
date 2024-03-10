@@ -9,16 +9,31 @@
 }
 
 .feed-picture {
-  width: 100%;
-  max-width: 50px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
 i {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .fa-user-plus {
   font-size: 1rem;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+button:focus {
+  outline: none;
 }
 
 /*!

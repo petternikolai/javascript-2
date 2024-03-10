@@ -3,17 +3,17 @@
 ![image](https://github.com/petternikolai/css-frameworks-ca/assets/116467779/376031e8-d3dc-4abe-a038-cff71dfc93e8)
 
 
-This is a frontend shell for the fictional SoMe platform ZenZone.
 
 ## Description
 
-The page has a login page, registration page, profile page and feed. The design is modern, simplistic and clean which hopefully contributes to the end users overall experience. 
+TBA
 
 ## Built With
 
 - HTML
 - Bootstrap
-- SCSS
+- Sass
+- JavaScript
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ The page has a login page, registration page, profile page and feed. The design 
 1. Clone the repo:
 
 ```bash
-git clone https://github.com/petternikolai/css-frameworks-ca.git
+git clone https://github.com/petternikolai/javascript-2.git
 ```
 
 ## Contact
