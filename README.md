@@ -28,6 +28,10 @@ git clone https://github.com/petternikolai/javascript-2.git
 
 [JsDocs](https://js2-jsdocs-zenzone.netlify.app)
 
+## JSDocs
+
+[JSDocs](https://js2-jsdocs-zenzone.netlify.app)
+
 ## Contact
 
 [Twitter](https://twitter.com/petternikolai94)
