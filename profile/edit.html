@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about/index.html">
+                        <a class="nav-link" href="/about.html">
                             <i class="fa-thin fa-circle-question"></i>
                         </a>
                     </li>
@@ -56,19 +56,19 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-4 mb-4">
+    <div class="container my-3">
         <!-- Update Profile Section -->
-        <div class="col bg-dark rounded p-3 d-flex flex-column align-items-center">
-            <div class="d-flex flex-column gap-2">
+        <div class="col-8 bg-dark rounded p-3 d-flex flex-column align-items-center mx-auto" data-bs-theme="dark">
+            <form>
+                <div class="d-flex flex-column gap-2"></div>
                 <h2 class="text-white text-center">Update Profile</h2>
-                <label class="text-white" for="bio">Bio:</label>
-                <textarea id="bio" rows="4" cols="50"></textarea>
-                <label class="text-white" for="avatarUrl">Profile Picture URL:</label>
-                <input type="text" id="avatarUrl">
+                <textarea class="form-control me-2" id="bio" rows="4" cols="50" placeholder="Bio"></textarea>
+                <input class="form-control mt-2 me-2" type="text" id="avatarUrl" placeholder="Image URL">
                 <script src="../src/js/api/profile/edit.js"></script>
-                <button class="btn btn-secondary" onclick="updateProfile()">Update Profile</button>
-            </div>
+                <button class="btn btn-secondary mt-2" onclick="updateProfile()">Update Profile</button>
         </div>
+        </form>
+    </div>
     </div>
 
     </div>
