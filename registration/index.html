@@ -27,12 +27,13 @@
                 <form name="auth" class="auth-form">
                     <h2>Join ZenZone</h2>
                     <div class="col mb-3">
-                        <input name="name" type="text" class="form-control" placeholder="Username"
+                        <input name="name" pattern="^[\w]+$" type="text" class="form-control" placeholder="Username"
                             aria-label="First-name" required autofocus="1">
                     </div>
                     <div class="col mb-3">
-                        <input name="email" type="text" class="form-control" placeholder="E-mail"
-                            aria-label="Mobile number or email" required>
+                        <input name="email" pattern="^[\w\-.]+@(stud\.)?noroff\.no$" type="text" class="form-control"
+                            placeholder="E-mail" aria-label="Mobile number or email" required
+                            title='Please enter a valid email address in the format "example@noroff.no" or "example@stud.noroff.no"'>
                     </div>
                     <div class="col mb-3">
                         <input name="password" type="password" pattern=".{8,}" required

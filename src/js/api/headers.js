@@ -1,6 +1,11 @@
 import { load } from "../storage/load.js";
 import { API_KEY } from "./constants.js";
 
+/**
+ * Generates headers for authenticated requests.
+ * @param {boolean} [hasBody=false] - Indicates whether the request includes a body.
+ * @returns {Headers} - The headers object containing the necessary headers for authentication.
+ */
 export function headers(hasBody = false) {
   const headers = new Headers();
 

@@ -4,7 +4,8 @@
   "description": "A starting point for the CSS Frameworks CA project",
   "scripts": {
     "build": "sass src/scss:dist/css",
-    "watch": "sass --watch src/scss:dist/css & live-server"
+    "watch": "sass --watch src/scss:dist/css & live-server",
+    "docs": "jsdoc -c ./conf.json -r"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "bootstrap-icons": "^1.11.3"
   },
   "devDependencies": {
+    "jsdoc": "^4.0.2",
     "live-server": "^1.2.2",
     "sass": "^1.70.0"
   }
