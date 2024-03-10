@@ -30,11 +30,20 @@ export function filterPosts(posts, filterValue) {
  * @param {Array} posts - An array of post objects to render.
  * @param {string} [currentUser] - The current user's name.
  */
-export function renderPosts(posts, currentUser) {
+export function renderPosts(posts, clearExisting = true) {
   const postsContainer = document.querySelector(".list-group");
-  postsContainer.innerHTML = "";
   const messageElement = document.getElementById("searchMessage");
   messageElement.classList.add("d-none");
+
+  if (clearExisting) {
+    postsContainer.innerHTML = ""; // Only clear if clearExisting is true
+  }
+
+  // Check if posts is an array before iterating over it
+  if (!Array.isArray(posts)) {
+    console.error("Error: Posts data is not an array");
+    return;
+  }
 
   // If there are no posts, display the message and return
   if (posts.length === 0) {
