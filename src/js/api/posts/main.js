@@ -1,5 +1,5 @@
 import { getPosts } from "./get.js";
-import { filterPosts, handleSearch } from "./postFunctions.js";
+import { filterPosts, handleSearch, renderPosts } from "./postFunctions.js";
 
 /**
  * Event listener for when the DOM content is loaded.
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   getPosts()
     .then((data) => {
       const posts = data.data;
-      filterPosts(posts, "default"); // Render posts with default filter value
+      filterPosts(posts); // Render posts with default filter value
     })
     .catch((error) => console.error("Error fetching posts:", error));
 
